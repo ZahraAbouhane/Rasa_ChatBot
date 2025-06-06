@@ -1,0 +1,72 @@
+version: "3.1"
+
+stories:
+- story: Round trip flight booking
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: book_flight
+      entities:
+        - departure_city: "الرباط"
+        - arrival_city: "مراكش"
+        - departure_date: "15 يونيو"
+    - action: action_book_flight
+    - intent: inform
+      entities:
+        - flight_class: "عادي"
+    - action: action_book_flight
+    - intent: inform
+      entities:
+        - flight_type: "ذهاب-إياب"
+    - action: action_book_flight
+    - intent: inform
+      entities:
+        - return_date: "20 يونيو"
+    - action: action_search_flights
+    - intent: flight_confirm_reservation
+    - action: action_confirm_flight_reservation
+
+- story: Hotel booking flow
+  steps:
+    - intent: greet
+    - action: utter_greet
+    - intent: book_hotel
+      entities:
+        - hotel_city: "مراكش"
+    - action: action_book_hotel
+    - intent: inform
+      entities:
+        - neighborhood: "أكدال"
+    - action: action_book_hotel
+    - intent: inform
+      entities:
+        - hotel_category: "4 نجوم"
+    - action: action_book_hotel
+    - intent: inform
+      entities:
+        - num_people: "شخصين"
+    - action: action_search_hotels
+    - intent: hotel_confirm_reservation
+    - action: action_confirm_hotel_reservation
+
+
+# - story: Complete flight booking flow
+#   steps:
+#     - intent: greet
+#     - action: utter_greet
+#     - intent: book_flight
+#       entities:
+#         - departure_city: "كازا"
+#         - arrival_city: "باريس"
+#         - departure_date: "10 يونيو"
+#     - action: action_book_flight
+#     - intent: inform
+#       entities:
+#         - flight_class: "اقتصاد"
+#     - action: action_book_flight
+#     - intent: inform
+#       entities:
+#         - flight_type: "ذهاب"
+#     - action: action_search_flights
+#     - intent: confirm_reservation
+#     - action: action_confirm_reservation

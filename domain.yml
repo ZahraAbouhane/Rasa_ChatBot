@@ -1,0 +1,200 @@
+version: "3.1"
+
+intents:
+  - greet
+  - goodbye
+  - affirm
+  - deny
+  - mood_great
+  - mood_unhappy
+  - bot_challenge
+  - book_flight
+  - book_hotel
+  - change_option
+  - flight_confirm_reservation
+  - hotel_confirm_reservation
+  - select_option
+  - inform
+
+entities:
+  - departure_city
+  - arrival_city
+  - departure_date
+  - return_date
+  - flight_class
+  - flight_type
+  - hotel_category
+  - hotel_city
+  - neighborhood
+  - num_people
+
+slots:
+  departure_city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: departure_city
+
+  arrival_city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: arrival_city
+
+  departure_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: departure_date
+
+  return_date:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: return_date
+
+  flight_class:
+    type: text
+    mappings:
+      - type: from_entity
+        entity: flight_class
+
+  flight_type:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: flight_type
+
+  hotel_category:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: hotel_category
+
+  hotel_city:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: hotel_city
+
+  neighborhood:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: neighborhood
+
+  num_people:
+    type: text
+    influence_conversation: true
+    mappings:
+      - type: from_entity
+        entity: num_people
+
+  requested_slot:
+    type: text
+    influence_conversation: false
+    mappings:
+      - type: custom
+
+  slot_has_availability:
+    type: bool
+    influence_conversation: true
+    mappings:
+      - type: custom
+
+
+responses:
+  utter_greet:
+    - text: "سلام! كيداير؟ كيفاش نعاونك باش تسافر؟"
+
+  utter_cheer_up:
+    - text: "ها واحد الحاجة باش تفرّح شوية:"
+      image: "https://i.imgur.com/nGF1K8f.jpg"
+
+  utter_did_that_help:
+    - text: "وش هادشي عاونك؟"
+
+  utter_happy:
+    - text: "زوين، كمل هكا!"
+
+  utter_goodbye:
+    - text: "بسلامة!"
+
+  utter_iamabot:
+    - text: "أنا روبو، خدام بـ Rasa."
+
+  utter_confirm:
+    - text: "تبارك الله عليك، راه تأكد ليك الحجز، شكراً على الثقة ديالك 🙏"
+
+  utter_ask_departure_city:
+    - text: "منين باغي تسافر؟"
+
+  utter_ask_arrival_city:
+    - text: "لفين باغي تمشي؟"
+
+  utter_ask_departure_date:
+    - text: "نهاراش باغي تمشي؟"
+
+  utter_ask_return_date:
+    - text: "ونهار الرجوع؟"
+
+  utter_ask_flight_type:
+    - text: "بغيت ذهاب فقط ولا ذهاب-إياب؟"
+
+  utter_ask_flight_class:
+    - text: "شنو نوع الدرجة؟ اقتصاد، عادي ولا رجال الأعمال؟"
+
+  utter_ask_hotel_city:
+    - text: "فأي مدينة بغيتي تحجز الفندق؟"
+
+  utter_ask_hotel_category:
+    - text: "شنو نوع الأوطيل؟ نجمة، جوج، تلاتة، ربعة ولا خمسة؟"
+
+  utter_ask_neighborhood:
+    - text: "وش كاين حي معين بغيتي تحجز فيه؟"
+
+  utter_ask_num_people:
+      - text: "شحال من شخص غادي يسكن فالفندق؟"
+
+  utter_ask_requested_slot:
+      - text: "شحال من معلومة ناقصة، عافاك كمل!"
+
+  utter_no_availability:
+      - text: "سمح ليا، ولكن ما لقيناش رحلات أو أوطيلات مناسبة فهاد الوقت. بغيتي نحاول نلقا لك شي حاجة أخرى ولا تغيّر التواريخ؟"
+
+actions:
+  - action_book_flight
+  - action_book_hotel
+  - action_search_flights
+  - action_search_hotels
+  - action_confirm_flight_reservation
+  - action_confirm_hotel_reservation
+  - utter_ask_num_people
+  - utter_ask_neighborhood
+  - utter_ask_hotel_category
+  - utter_ask_hotel_city
+  - utter_ask_flight_class
+  - utter_ask_flight_type
+  - utter_ask_return_date
+  - utter_ask_departure_date
+  - utter_ask_arrival_city
+  - utter_ask_departure_city
+  - utter_confirm
+  - utter_iamabot
+  - utter_goodbye
+  - utter_happy
+  - utter_did_that_help
+  - utter_cheer_up
+  - utter_greet
+
+session_config:
+  session_expiration_time: 60
+  carry_over_slots_to_new_session: true

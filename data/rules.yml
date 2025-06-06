@@ -1,0 +1,46 @@
+version: "3.1"
+
+rules:
+# General conversation rules
+- rule: Greet at the start of conversation
+  conversation_start: true
+  steps:
+  - intent: greet
+  - action: utter_greet
+
+- rule: Say goodbye anytime the user says goodbye
+  steps:
+  - intent: goodbye
+  - action: utter_goodbye
+
+- rule: Respond to bot challenge
+  steps:
+  - intent: bot_challenge
+  - action: utter_iamabot
+
+- rule: Handle denial or cancellation
+  steps:
+  - intent: deny
+  - action: utter_goodbye
+
+# Booking initiation rules
+- rule: Start flight booking
+  steps:
+  - intent: book_flight
+  - action: action_book_flight
+
+- rule: Start hotel booking
+  steps:
+  - intent: book_hotel
+  - action: action_book_hotel
+
+# Confirmation rule
+- rule: Handle confirmation flight
+  steps:
+  - intent: flight_confirm_reservation
+  - action: action_confirm_flight_reservation
+
+- rule: Handle confirmation hotel
+  steps:
+    - intent: hotel_confirm_reservation
+    - action: action_confirm_hotel_reservation

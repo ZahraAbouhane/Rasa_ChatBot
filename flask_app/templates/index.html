@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Darija Travel Chatbot</title>
+    <style>
+        body { font-family: Arial; max-width: 600px; margin: auto; }
+        .chat-box { border: 1px solid #ccc; padding: 10px; min-height: 300px; margin-top: 10px; }
+        .input-box { margin-top: 10px; }
+        .user-msg { text-align: right; color: blue; }
+        .bot-msg { text-align: left; color: green; }
+    </style>
+</head>
+<body>
+    <h2>💬 Darija Travel Chatbot</h2>
+    <div class="chat-box" id="chat-box"></div>
+    <div class="input-box">
+        <input type="text" id="user-input" placeholder="اكتب سؤالك هنا..." style="width:80%;">
+        <button onclick="sendMessage()">إرسال</button>
+    </div>
+
+    <script>
+        function sendMessage() {
+            const userInput = document.getElementById("user-input").value;
+            const chatBox = document.getElementById("chat-box");
+
+            chatBox.innerHTML += `<div class="user-msg">${userInput}</div>`;
+            document.getElementById("user-input").value = "";
+
+            fetch("/send_message", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ message: userInput })
+            })
+            .then(response => response.json())
+            .then(data => {
+                data.messages.forEach(msg => {
+                    chatBox.innerHTML += `<div class="bot-msg">${msg}</div>`;
+                });
+                chatBox.scrollTop = chatBox.scrollHeight;
+            });
+        }
+    </script>
+</body>
+</html>

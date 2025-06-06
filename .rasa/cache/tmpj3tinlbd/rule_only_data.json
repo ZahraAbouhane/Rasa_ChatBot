@@ -1,0 +1,8 @@
+{
+  "rule_only_slots": [
+    "neighborhood",
+    "hotel_category",
+    "hotel_city"
+  ],
+  "rule_only_loops": []
+}
